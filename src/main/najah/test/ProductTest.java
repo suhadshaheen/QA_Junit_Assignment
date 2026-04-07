@@ -30,6 +30,7 @@ public class ProductTest {
         System.out.println("All Tests Finished");
     }
 
+
     @Test
     @DisplayName("Valid product creation")
     void testProductCreation() {
