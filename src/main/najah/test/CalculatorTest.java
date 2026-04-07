@@ -91,7 +91,7 @@ void testInvalidFactorial() {
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @Order(8)
     void testFactorial() {
-    assertEquals(3628800, calc.factorial(10));
+    assertEquals(300000, calc.factorial(10));
     }
 
     @Test
