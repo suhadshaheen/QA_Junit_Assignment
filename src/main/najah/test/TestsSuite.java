@@ -1,6 +1,5 @@
 package main.najah.test;
 
-import org.junit.platform.suite.api.IncludePackages;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
@@ -9,7 +8,7 @@ import org.junit.platform.suite.api.Suite;
         CalculatorTest.class,
         ProductTest.class,
         UserServiceSimpleTest.class,
-        TestRecipeBook.class
+        RecipeBookTest.class
 })
 public class TestsSuite {
 }

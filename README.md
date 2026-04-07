@@ -1,8 +1,8 @@
-# JUnit5 Homework Assignment #2
+# JUnit5 Assignment #2
 
 ## Project Structure
-src/main/najah/code/ → Source classes
-src/main/najah/test/ → Test classes
+- src/main/najah/code/ → Source classes
+- src/main/najah/test/ → Test classes
 
 ## Test Classes
 - CalculatorTest → Calculator

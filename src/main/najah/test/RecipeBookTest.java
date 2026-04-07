@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 @Execution(ExecutionMode.CONCURRENT)
 @DisplayName("RecipeBook Tests")
-public class TestRecipeBook {
+public class RecipeBookTest {
     RecipeBook recipeBook ;
     @BeforeAll
     public static void beforeAll() {
