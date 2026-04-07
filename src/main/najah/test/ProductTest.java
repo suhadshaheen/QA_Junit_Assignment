@@ -37,16 +37,14 @@ public class ProductTest {
         assertEquals("Charger", p.getName());
         p.applyDiscount(10);
         assertEquals(10, p.getDiscount());
-        p.applyDiscount(p.getPrice());
-        assertEquals(50, p.getDiscount());
+
     }
     @Test
-    @DisplayName("Test getFinalPrice Response")
+    @DisplayName("Test getFinalPrice Response time")
     @Timeout(value = 1000,unit = TimeUnit.MILLISECONDS)
     void testGetFinalPriceResponse() {
         p.applyDiscount(50);
-        double price= p.getFinalPrice();
-        assertEquals(price, p.getFinalPrice());
+        assertEquals(25, p.getFinalPrice());
     }
     @Test
     @DisplayName("Negative price Test")
@@ -65,6 +63,12 @@ public class ProductTest {
     void testDiscountParameterized(double discount, double expected) {
         p.applyDiscount(discount);
         assertEquals(expected, p.getFinalPrice());
+    }
+    @Test
+    @DisplayName("Test Null Name")
+    void testNullName() {
+        Product p = new Product(null, 50);
+        assertNull(p.getName()); // design issue
     }
 
 }

@@ -38,9 +38,12 @@ class UserServiceSimpleTest {
     @Test
     @DisplayName("Test Invalid Email")
     void testInvalidEmail() {
-        assertFalse(userService.isValidEmail(null),"email should not be null");
-        assertFalse(userService.isValidEmail("suhad.com"),"email should contains @");
-        assertFalse(userService.isValidEmail("suhadshaheen@stuedu"),"email should contains .");
+        assertFalse(userService.isValidEmail(null), "email should not be null");
+        assertFalse(userService.isValidEmail("suhad.com"), "email should contains @");
+        assertFalse(userService.isValidEmail("suhadshaheen@stuedu"), "email should contains .");
+        assertFalse(userService.isValidEmail("@."));
+        assertFalse(userService.isValidEmail("abc@.com"));
+
     }
     @Test
     @DisplayName("Valid authentication")
@@ -52,6 +55,7 @@ class UserServiceSimpleTest {
     void testAuthenticateInvalid() {
         assertFalse(userService.authenticate("admin", "33333"));
         assertFalse(userService.authenticate("someone", "1234"));
+        assertFalse(userService.authenticate(null, null));
     }
 
     @ParameterizedTest
@@ -60,18 +64,25 @@ class UserServiceSimpleTest {
             "s12325463@stu.najah.edu, true",
             "suhad-shaheen, false",
             "suhad@gmail.com, true",
-            "suhadsh.com, false"
+            "suhadsh.com, false",
+
+
     })
     void testIsValidEmailParameterized(String email, boolean expected) {
         assertEquals(expected, userService.isValidEmail(email));
     }
 
     @Test
-    @DisplayName("Test auth response")
+    @DisplayName("Test auth response time")
     @Timeout(value = 100,unit = TimeUnit.MILLISECONDS)
     void testAuthResponse() {
-        userService.authenticate("admin", "1234");
+        assertTrue(userService.authenticate("admin", "1234"));
     }
-
+    @Test
+    @Disabled("Intentionally failing: email validation is too weak, To Fix by using regex.")
+    @DisplayName("Disabled failing test for email validation")
+    void testStrictEmailValidation() {
+        assertFalse(userService.isValidEmail("@."));
+    }
 
 }

@@ -57,12 +57,13 @@ public class RecipeBookTest {
     public void testDeleteExistingRecipe() throws RecipeException {
         Recipe r = createRecipe("Americano", "10");
         recipeBook.addRecipe(r);
-        assertEquals("Americano",recipeBook.deleteRecipe(0));
-    }
+        recipeBook.deleteRecipe(0);
+        assertNull(recipeBook.getRecipes()[0]);    }
     @Test
     @DisplayName("Delete unexisting recipe")
     public void testDeleteUnexistingRecipe() throws RecipeException {
-        assertNull(recipeBook.deleteRecipe(0));
+        assertEquals("Americano", recipeBook.deleteRecipe(0));
+        assertNull(recipeBook.getRecipes()[0]);
     }
     @Test
     @DisplayName("Test Editing  existing recipe")
@@ -70,12 +71,13 @@ public class RecipeBookTest {
         Recipe r = createRecipe("Americano", "10");
         Recipe r2 = createRecipe("Mocha", "7");
         recipeBook.addRecipe(r);
-        recipeBook.addRecipe(r2);
-        assertEquals("Americano",recipeBook.editRecipe(0,r2));
+        recipeBook.editRecipe(0, r2);
+        assertEquals("Americano", recipeBook.editRecipe(0, r2));
+        assertEquals("Mocha", recipeBook.getRecipes()[0].getName());
     }
     @Test
     @Timeout(value = 100,unit = TimeUnit.MILLISECONDS)
-    @DisplayName("Test getRecipe Response")
+    @DisplayName("Test getRecipe Response time")
     public void testGetRecipe() throws RecipeException {
         Recipe r = createRecipe("Americano", "10");
         recipeBook.addRecipe(r);
@@ -86,6 +88,7 @@ public class RecipeBookTest {
     public void testUnexistingRecipe() throws RecipeException {
         Recipe r = createRecipe("Mocha", "10");
         assertNull(recipeBook.editRecipe(0,r));
+
     }
     @ParameterizedTest
     @DisplayName("add recipes with different prices")
@@ -98,6 +101,15 @@ public class RecipeBookTest {
     void testAddRecipeWithDifferentPrices(String Name,String price) throws RecipeException {
         Recipe r = createRecipe(Name, price);
         assertTrue(recipeBook.addRecipe(r));
+    }
+    @Test
+    @DisplayName("Test add if array full")
+    void testAddWhenFull() throws RecipeException {
+        for (int i = 0; i < 4; i++) {
+            recipeBook.addRecipe(createRecipe("r" + i, "5"));
+        }
+
+        assertFalse(recipeBook.addRecipe(createRecipe("Extra", "10")));
     }
 
 }

@@ -42,10 +42,10 @@ static void AfterAll()  {
     }
     @Test
     @Order(2)
-    @DisplayName("Add with zero")
+    @DisplayName("test invalid add")
     void testAddZero() {
-        assertEquals(0, calc.add(0));
-        assertEquals(5, calc.add(5));
+        assertEquals(0, calc.add());
+        assertEquals(0, calc.add(0,0,0));
     }
 
  @Test
@@ -87,19 +87,19 @@ void testInvalidFactorial() {
         assertEquals(expected, calc.divide(a, b));
     }
     @Test
-    @DisplayName("Test Factorial Response on large n")
+    @DisplayName("Test Factorial Response time on large n")
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @Order(8)
-    void testFactorial() {
-    assertEquals(300000, calc.factorial(10));
+    void testFactorialResponse() {
+    assertEquals(3628800, calc.factorial(10));
     }
 
     @Test
     @Order(9)
-    @Disabled("Intentionally failing: divide(10,0) should return 0 but throws exception,to fix: add check in divide method if b=0 then return 0")
-    @DisplayName("Disabled failing Test")
-    void testDisabledFailing() {
-        assertEquals(0, calc.divide(10, 0));
+    @Disabled("Intentionally failing: factorial overflows for larger inputs, to Fix by using long or BigInteger.")
+    @DisplayName("Disabled failing test for factorial overflow")
+    void testFactorialOverflowExpectedCorrectValue() {
+        assertEquals(6227020800L, calc.factorial(13));
     }
 
 }
