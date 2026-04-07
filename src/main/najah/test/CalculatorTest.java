@@ -96,8 +96,8 @@ void testInvalidFactorial() {
 
     @Test
     @Order(9)
-    @Disabled("Intentionally failing: divide(10,0) should return 0 but throws exception. Fix: add null check in divide method")
-    @DisplayName("Disabled Failing Test")
+    @Disabled("Intentionally failing: divide(10,0) should return 0 but throws exception,to fix: add check in divide method if b=0 then return 0")
+    @DisplayName("Disabled failing Test")
     void testDisabledFailing() {
         assertEquals(0, calc.divide(10, 0));
     }
