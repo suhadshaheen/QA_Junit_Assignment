@@ -14,6 +14,8 @@
 1. Open project in IntelliJ IDEA
 2. Right click `main.najah.test` → Run Tests
 3. Or run `TestsSuite` to run all tests
+## Test Coverage
+Used **IntelliJ IDEA built in coverage tool** equivalent to EclEmma instead of Eclipse.
 
 ### How to run coverage in IntelliJ:
 1. Right click on test class or package
